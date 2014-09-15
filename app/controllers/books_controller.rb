@@ -16,6 +16,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find params[:id]
+    @friends = User.all.map { |x| [x.email,x.id] }
   end
 
   def create

@@ -1,0 +1,33 @@
+%h1 
+  = @book.title
+%h3
+  = "by #{@book.author}"
+%h4
+  = "ISBN: #{@book.isbn}"
+%p
+  = @book.description
+
+%button.btn.btn-primary#rec_button Recommend
+
+#rec_modal
+  #rmod.modal.fade.bs-example-modal-sm{ :tabindex => "-1", :role => "dialog" }
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          %p
+            = @book.title
+        .modal-body
+          = select :friend, :friend_id, @friends
+        .modal-footer
+          %button.btn.btn-primary#submit_rec Recommend 
+
+:javascript
+  $(function() { 
+    $('#rec_button').click( function(e) {
+      $('#rmod').modal('show'); 
+    });
+    $('#submit_rec').click( function(e) {
+      $('#rmod').modal('hide');
+      alert('foobar');
+    });
+  });
